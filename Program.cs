@@ -17,6 +17,16 @@ namespace InvoiceApp
 
         static void Main(string[] args)
         {
+            productManager.AddProduct(new Product { Id = 1, Name = "Iphone", Description = "New model Iphone", Price = 70000, Quantity = 10, CategoryId = 1 });
+            productManager.AddProduct(new Product { Id = 2, Name = "Xiomi", Description = "New model Xiomi", Price = 20000, Quantity = 10, CategoryId = 1 });
+            productManager.AddProduct(new Product { Id = 3, Name = "Airpods", Description = "New model bluetooth", Price = 15000, Quantity = 10, CategoryId = 2 });
+
+            categoryManager.AddCategory(new Category {Id=1,Name="Mobile",Description="Mobile Category"  });
+            categoryManager.AddCategory(new Category { Id=2,Name="Earphones",Description="EarPhone category" });
+
+            customerManager.AddCustomer(new Customer { Id = 1, Name = "ashok", Email = "ashok@gmail.com", Address = "Banglore", ContactNumber = "+919112345344" });
+            customerManager.AddCustomer(new Customer { Id = 2, Name = "arun", Email = "arun@gmail.com", Address = "Banglore", ContactNumber = "+919112345355" });
+
             Console.WriteLine("Welcome to the Invoicing System");
             Console.WriteLine();
 
@@ -570,8 +580,10 @@ namespace InvoiceApp
                 {
                     Console.WriteLine($"Product ID: {item.ProductId}, Quantity: {item.Quantity}, Unit Price: {item.UnitPrice:C}, Total Price: {item.TotalPrice:C}");
                 }
-                decimal AmoutnAfterDiscount=invoiceManager.CalculateDiscount(invoice.TotalAmount);
-                Console.WriteLine($"Total Amount: {AmoutnAfterDiscount:C}");
+                Console.WriteLine($"Total Amount: {invoice.TotalAmount:C}");
+
+                decimal AmoutnAfterDiscount =invoiceManager.CalculateDiscount(invoice.TotalAmount);
+                Console.WriteLine($"Total Amount After Discount: {AmoutnAfterDiscount:C}");
                 Console.WriteLine($"Payment Option: {invoice.PaymentOption}");
             }
             catch (Exception ex)
